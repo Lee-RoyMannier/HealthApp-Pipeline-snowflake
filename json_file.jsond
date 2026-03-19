@@ -1,0 +1,11 @@
+{"Time": "20171223-22:15:29:606", "Component": "Step_LSC", "Pid": 30002312, "Content": "onStandStepChanged 3579"}
+{"Time": "20171223-22:15:29:615", "Component": "Step_LSC", "Pid": 30002312, "Content": "onExtend:1514038530000 14 0 4"}
+{"Time": "20171223-22:15:29:633", "Component": "Step_StandReportReceiver", "Pid": 30002312, "Content": "onReceive action: android.intent.action.SCREEN_ON"}
+{"Time": "20171223-22:15:29:635", "Component": "Step_LSC", "Pid": 30002312, "Content": "processHandleBroadcastAction action:android.intent.action.SCREEN_ON"}
+{"Time": "20171223-22:15:29:635", "Component": "Step_StandStepCounter", "Pid": 30002312, "Content": "flush sensor data"}
+{"Time": "20171223-22:15:29:635", "Component": "Step_SPUtils", "Pid": 30002312, "Content": " getTodayTotalDetailSteps = 1514038440000##6993##548365##8661##12266##27164404"}
+{"Time": "20171223-22:15:29:636", "Component": "Step_SPUtils", "Pid": 30002312, "Content": "setTodayTotalDetailSteps=1514038440000##7007##548365##8661##12361##27173954"}
+{"Time": "20171223-22:15:29:636", "Component": "Step_LSC", "Pid": 30002312, "Content": "onStandStepChanged 3579"}
+{"Time": "20171223-22:15:29:645", "Component": "Step_ExtSDM", "Pid": 30002312, "Content": "calculateCaloriesWithCache totalCalories=126775"}
+{"Time": "20171223-22:15:29:648", "Component": "Step_ExtSDM", "Pid": 30002312, "Content": "calculateAltitudeWithCache totalAltitude=240"}
+{"Time": "20171223-22:15:29:649", "Component": "Step_StandReportReceiver", "Pid": 30002312, "Content": "REPORT : 7007 5002 150089 240"}
