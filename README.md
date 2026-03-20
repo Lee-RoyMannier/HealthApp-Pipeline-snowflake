@@ -226,3 +226,65 @@ CREATE PIPE raw.load_raw_data
 Nous allons y mettre notre fichier avec un nouveau nom pour voir si le pipe fonctionne.
 
 <img width="1482" height="463" alt="image" src="https://github.com/user-attachments/assets/e2f27fda-902c-4bfe-bc79-c7462faa7d6f" />
+
+### Gestion des fichiers JSON
+Nous constatons que l’application génère également des fichiers au format JSON.
+Cependant, la configuration actuelle du pipeline est adaptée uniquement aux fichiers CSV.
+
+Pour prendre en charge ce nouveau format, plusieurs adaptations sont nécessaires.
+
+
+⚙️ Mise en place
+
+Afin de gérer les fichiers JSON dans Snowflake, nous mettons en place :
+
+- un nouveau FILE FORMAT dédié au format JSON
+
+- un nouveau stage pour stocker ces fichiers
+
+- un nouveau pipe (Snowpipe) pour automatiser leur ingestion
+
+Cette séparation permet de traiter chaque format de manière adaptée et de conserver une architecture claire et modulaire.
+
+
+🔍 Spécificité du format JSON
+
+Contrairement aux fichiers CSV, les fichiers JSON sont semi-structurés et peuvent contenir :
+
+- des objets imbriqués
+
+- des structures variables
+
+- des champs non uniformes
+
+Dans Snowflake, ces données sont généralement stockées dans une colonne de type VARIANT, puis exploitées via des requêtes spécifiques.
+
+
+👉 Cela implique une approche différente :
+
+- pas de mapping direct $1, $2, $3 comme en CSV
+
+- utilisation de fonctions pour parser le JSON
+
+- extraction des champs via des chemins (ex: data:field_name)
+
+Nous allons organiser nos scripts de tel façon : 
+    Un dossier Internal_stage_JSON_FORMAT
+        - script internal_stage_json
+        - File_Format_JSON
+        - Pipe json
+
+<img width="241" height="94" alt="image" src="https://github.com/user-attachments/assets/5cb50266-4f69-4379-8b04-d6f15dbcc960" />
+
+`File_Format_JSON`
+<img width="353" height="58" alt="image" src="https://github.com/user-attachments/assets/cca0c46d-1f21-4abf-b379-3e0086cb22bc" />
+
+`internal_stage_json`
+<img width="348" height="52" alt="image" src="https://github.com/user-attachments/assets/b2f44a23-f231-4db7-a99a-b66687b12494" />
+
+`pipe json`
+<img width="813" height="304" alt="image" src="https://github.com/user-attachments/assets/42807207-d7c2-41e8-9ef7-791ca46a047a" />
+
+=> j'ai ajouté 2 colonnes, able_name, pour avoir le nom du fichier et updated_at pour savoir quand le pipe a fonctionné (ne pas oublier de rajouter du coup les 2 colonnes dans la création de la table et dans le pipe csv).
+
+## Transformation des données
